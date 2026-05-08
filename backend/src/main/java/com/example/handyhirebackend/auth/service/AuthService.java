@@ -31,7 +31,7 @@ public class AuthService {
         Set<String> roles = user.getRoles();
 
         // 1. ADDED: Check verification for EVERYONE (except the Admin) right after password check
-        if (!user.isVerified() && !roles.contains("ADMIN")) {
+        if (!user.isVerified() && roles.contains("PROVIDER")) {
             return new LoginResponse("PENDING_VERIFICATION", null, "Account pending admin approval", user.getId());
         }
 
@@ -85,8 +85,12 @@ public class AuthService {
         user.setPhone(request.getPhone());
         
         // 2. UPDATED: Set verified to FALSE for every new user automatically
-        user.setVerified(false); 
-
+// 2. UPDATED: Auto-verify customers, require manual verification for providers
+        if ("CUSTOMER".equals(normalizedRole)) {
+            user.setVerified(true);
+        } else {
+            user.setVerified(false); 
+        }
         Set<String> roles = new HashSet<>();
         roles.add(normalizedRole);
         user.setRoles(roles);
@@ -94,7 +98,13 @@ public class AuthService {
         User saved = userRepository.save(user);
         
         // 3. UPDATED: Generic pending message for everyone
-        String msg = "Registration successful. Pending admin verification.";
+ // 3. UPDATED: Specific message based on role
+        String msg;
+        if ("CUSTOMER".equals(normalizedRole)) {
+            msg = "Registration successful.";
+        } else {
+            msg = "Registration successful. Pending admin verification.";
+        }
 
         return new LoginResponse("SUCCESS", normalizedRole, msg, saved.getId());
     }

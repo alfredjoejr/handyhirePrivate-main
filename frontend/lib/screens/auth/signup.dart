@@ -18,7 +18,8 @@ class _SignupScreenState extends State<SignupScreen> {
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
-  final TextEditingController _confirmPasswordController = TextEditingController();
+  final TextEditingController _confirmPasswordController =
+      TextEditingController();
   final TextEditingController _phoneController = TextEditingController();
   final TextEditingController _experienceController = TextEditingController();
 
@@ -30,13 +31,23 @@ class _SignupScreenState extends State<SignupScreen> {
   final List<String> _roles = [
     'Register as Customer',
     'Register as Provider',
-    'Register as Customer & Provider'
+    'Register as Customer & Provider',
   ];
 
   String? _selectedProfession;
   final List<String> _professions = [
-    'AC Technician', 'Appliance Repair', 'Carpenter', 'Cleaner', 'Electrician',
-    'Gardener', 'Mason', 'Painter', 'Pest Control', 'Plumber', 'Tiler', 'Welder'
+    'AC Technician',
+    'Appliance Repair',
+    'Carpenter',
+    'Cleaner',
+    'Electrician',
+    'Gardener',
+    'Mason',
+    'Painter',
+    'Pest Control',
+    'Plumber',
+    'Tiler',
+    'Welder',
   ];
 
   @override
@@ -75,10 +86,14 @@ class _SignupScreenState extends State<SignupScreen> {
           hintText: hint,
           hintStyle: TextStyle(color: Colors.grey[600]),
           prefixIcon: Icon(icon, color: const Color(0xFF0B1E3F)),
-          border: OutlineInputBorder(borderRadius: BorderRadius.circular(15), borderSide: BorderSide.none),
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(15),
+            borderSide: BorderSide.none,
+          ),
           counterText: "",
         ),
-        validator: customValidator ??
+        validator:
+            customValidator ??
             (value) {
               if (value == null || value.isEmpty) return 'Please enter $hint';
               return null;
@@ -92,7 +107,8 @@ class _SignupScreenState extends State<SignupScreen> {
     String displayFileName = 'No file selected';
     if (title.contains('NIC') && _idProofFileName != null) {
       displayFileName = _idProofFileName!;
-    } else if (title.contains('Certificates') && _certificationFileName != null) {
+    } else if (title.contains('Certificates') &&
+        _certificationFileName != null) {
       displayFileName = _certificationFileName!;
     }
 
@@ -102,7 +118,10 @@ class _SignupScreenState extends State<SignupScreen> {
       decoration: BoxDecoration(
         color: const Color(0xFF1E355B),
         borderRadius: BorderRadius.circular(15),
-        border: Border.all(color: const Color(0xFF8EBBFF).withOpacity(0.5), width: 1.5),
+        border: Border.all(
+          color: const Color(0xFF8EBBFF).withOpacity(0.5),
+          width: 1.5,
+        ),
       ),
       child: InkWell(
         onTap: () async {
@@ -130,17 +149,22 @@ class _SignupScreenState extends State<SignupScreen> {
                 Container(
                   padding: const EdgeInsets.all(10),
                   decoration: BoxDecoration(
-                      color: const Color(0xFF8EBBFF),
-                      borderRadius: BorderRadius.circular(10)),
+                    color: const Color(0xFF8EBBFF),
+                    borderRadius: BorderRadius.circular(10),
+                  ),
                   child: Icon(icon, color: const Color(0xFF0B1E3F)),
                 ),
                 const SizedBox(width: 15),
                 Expanded(
-                    child: Text(title,
-                        style: const TextStyle(
-                            color: Colors.white,
-                            fontSize: 16,
-                            fontWeight: FontWeight.w500))),
+                  child: Text(
+                    title,
+                    style: const TextStyle(
+                      color: Colors.white,
+                      fontSize: 16,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                ),
                 const Icon(Icons.upload_file, color: Color(0xFFC0C0C2)),
               ],
             ),
@@ -148,7 +172,9 @@ class _SignupScreenState extends State<SignupScreen> {
             Text(
               displayFileName,
               style: TextStyle(
-                color: displayFileName == 'No file selected' ? Colors.white54 : Colors.greenAccent,
+                color: displayFileName == 'No file selected'
+                    ? Colors.white54
+                    : Colors.greenAccent,
                 fontSize: 13,
                 fontStyle: FontStyle.italic,
               ),
@@ -166,8 +192,14 @@ class _SignupScreenState extends State<SignupScreen> {
       builder: (BuildContext context) {
         return AlertDialog(
           backgroundColor: const Color(0xFF1E355B),
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-          title: const Icon(Icons.hourglass_top, color: Color(0xFFB18E44), size: 60),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(20),
+          ),
+          title: const Icon(
+            Icons.hourglass_top,
+            color: Color(0xFFB18E44),
+            size: 60,
+          ),
           content: const Text(
             'Your account is pending approval.\n\nOur admin team will review your submitted documents and verify your profile. You will be notified once approved to start accepting jobs!',
             textAlign: TextAlign.center,
@@ -179,17 +211,22 @@ class _SignupScreenState extends State<SignupScreen> {
               style: ElevatedButton.styleFrom(
                 backgroundColor: const Color(0xFFB18E44),
                 minimumSize: const Size(200, 50),
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(25)),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(25),
+                ),
               ),
               onPressed: () {
                 Navigator.of(context).pop();
                 Navigator.of(context).pop();
               },
-              child: const Text('Go To Login',
-                  style: TextStyle(
-                      color: Color(0xFF0B1E3F),
-                      fontWeight: FontWeight.bold,
-                      fontSize: 18)),
+              child: const Text(
+                'Go To Login',
+                style: TextStyle(
+                  color: Color(0xFF0B1E3F),
+                  fontWeight: FontWeight.bold,
+                  fontSize: 18,
+                ),
+              ),
             ),
             const SizedBox(height: 10),
           ],
@@ -200,7 +237,8 @@ class _SignupScreenState extends State<SignupScreen> {
 
   @override
   Widget build(BuildContext context) {
-    bool isProviderOrBoth = _selectedRole == 'Register as Provider' ||
+    bool isProviderOrBoth =
+        _selectedRole == 'Register as Provider' ||
         _selectedRole == 'Register as Customer & Provider';
 
     return Scaffold(
@@ -213,67 +251,92 @@ class _SignupScreenState extends State<SignupScreen> {
       body: SafeArea(
         child: Center(
           child: SingleChildScrollView(
-            padding: const EdgeInsets.symmetric(horizontal: 30.0, vertical: 10.0),
+            padding: const EdgeInsets.symmetric(
+              horizontal: 30.0,
+              vertical: 10.0,
+            ),
             child: Form(
               key: _formKey,
               child: Column(
                 children: [
-                  Text('Create Account',
-                      style: GoogleFonts.poppins(
-                          fontSize: 32,
-                          fontWeight: FontWeight.bold,
-                          color: const Color(0xFFB18E44))),
+                  Text(
+                    'Create Account',
+                    style: GoogleFonts.poppins(
+                      fontSize: 32,
+                      fontWeight: FontWeight.bold,
+                      color: const Color(0xFFB18E44),
+                    ),
+                  ),
                   const SizedBox(height: 10),
-                  const Text('Join Handy Hire today',
-                      style: TextStyle(color: Colors.white70, fontSize: 16)),
+                  const Text(
+                    'Join Handy Hire today',
+                    style: TextStyle(color: Colors.white70, fontSize: 16),
+                  ),
                   const SizedBox(height: 40),
                   _buildTextField(
-                      controller: _nameController,
-                      hint: 'Full Name',
-                      icon: Icons.person,
-                      customValidator: (value) {
-                        if (value == null || value.trim().isEmpty) return 'Please enter your name';
-                        if (value.trim().length < 3) return 'Name must be at least 3 characters long';
-                        return null;
-                      }),
+                    controller: _nameController,
+                    hint: 'Full Name',
+                    icon: Icons.person,
+                    customValidator: (value) {
+                      if (value == null || value.trim().isEmpty)
+                        return 'Please enter your name';
+                      if (value.trim().length < 3)
+                        return 'Name must be at least 3 characters long';
+                      return null;
+                    },
+                  ),
                   _buildTextField(
-                      controller: _emailController,
-                      hint: 'Email Address',
-                      icon: Icons.email,
-                      keyboardType: TextInputType.emailAddress,
-                      customValidator: (value) {
-                        if (value == null || value.isEmpty) return 'Please enter your email';
-                        if (!RegExp(r'^[\w\-.]+@([\w\-]+\.)+[\w\-]{2,}$').hasMatch(value)) {
-                          return 'Enter a valid email';
-                        }
-                        return null;
-                      }),
+                    controller: _emailController,
+                    hint: 'Email Address',
+                    icon: Icons.email,
+                    keyboardType: TextInputType.emailAddress,
+                    customValidator: (value) {
+                      if (value == null || value.isEmpty)
+                        return 'Please enter your email';
+                      if (!RegExp(
+                        r'^[\w\-.]+@([\w\-]+\.)+[\w\-]{2,}$',
+                      ).hasMatch(value)) {
+                        return 'Enter a valid email';
+                      }
+                      return null;
+                    },
+                  ),
                   _buildTextField(
-                      controller: _passwordController,
-                      hint: 'Password',
-                      icon: Icons.lock,
-                      isPassword: true,
-                      customValidator: (value) {
-                        if (value == null || value.isEmpty) return 'Please enter a password';
-                        if (value.length < 8) return 'Must be at least 8 characters';
-                        if (value.length > 16) return 'Must be 16 characters or less';
-                        if (!RegExp(r'[!@#\$&*~%^()\-+=_]').hasMatch(value)) {
-                          return 'Must contain at least 1 special character';
-                        }
-                        return null;
-                      }),
+                    controller: _passwordController,
+                    hint: 'Password',
+                    icon: Icons.lock,
+                    isPassword: true,
+                    customValidator: (value) {
+                      if (value == null || value.isEmpty)
+                        return 'Please enter a password';
+                      if (value.length < 8)
+                        return 'Must be at least 8 characters';
+                      if (value.length > 16)
+                        return 'Must be 16 characters or less';
+                      if (!RegExp(r'[!@#\$&*~%^()\-+=_]').hasMatch(value)) {
+                        return 'Must contain at least 1 special character';
+                      }
+                      return null;
+                    },
+                  ),
                   _buildTextField(
-                      controller: _confirmPasswordController,
-                      hint: 'Confirm Password',
-                      icon: Icons.lock_outline,
-                      isPassword: true,
-                      customValidator: (value) {
-                        if (value == null || value.isEmpty) return 'Please confirm your password';
-                        if (value != _passwordController.text) return 'Passwords do not match!';
-                        return null;
-                      }),
+                    controller: _confirmPasswordController,
+                    hint: 'Confirm Password',
+                    icon: Icons.lock_outline,
+                    isPassword: true,
+                    customValidator: (value) {
+                      if (value == null || value.isEmpty)
+                        return 'Please confirm your password';
+                      if (value != _passwordController.text)
+                        return 'Passwords do not match!';
+                      return null;
+                    },
+                  ),
                   Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 15,
+                      vertical: 5,
+                    ),
                     decoration: BoxDecoration(
                       color: const Color(0xFFC0C0C2),
                       borderRadius: BorderRadius.circular(15),
@@ -283,14 +346,22 @@ class _SignupScreenState extends State<SignupScreen> {
                         value: _selectedRole,
                         isExpanded: true,
                         dropdownColor: const Color(0xFFC0C0C2),
-                        icon: const Icon(Icons.keyboard_arrow_down, color: Color(0xFF0B1E3F)),
+                        icon: const Icon(
+                          Icons.keyboard_arrow_down,
+                          color: Color(0xFF0B1E3F),
+                        ),
                         style: const TextStyle(
-                            color: Color(0xFF0B1E3F),
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold),
+                          color: Color(0xFF0B1E3F),
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                        ),
                         items: _roles
-                            .map((String role) => DropdownMenuItem<String>(
-                                value: role, child: Text(role)))
+                            .map(
+                              (String role) => DropdownMenuItem<String>(
+                                value: role,
+                                child: Text(role),
+                              ),
+                            )
                             .toList(),
                         onChanged: (String? newValue) {
                           setState(() => _selectedRole = newValue!);
@@ -307,63 +378,101 @@ class _SignupScreenState extends State<SignupScreen> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Divider(
-                                  color: const Color(0xFF8EBBFF).withOpacity(0.3),
-                                  thickness: 1,
-                                  height: 40),
-                              Text('Professional Details',
-                                  style: GoogleFonts.poppins(
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.bold,
-                                      color: const Color(0xFF8EBBFF))),
+                                color: const Color(0xFF8EBBFF).withOpacity(0.3),
+                                thickness: 1,
+                                height: 40,
+                              ),
+                              Text(
+                                'Professional Details',
+                                style: GoogleFonts.poppins(
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold,
+                                  color: const Color(0xFF8EBBFF),
+                                ),
+                              ),
                               const SizedBox(height: 20),
                               _buildTextField(
-                                  controller: _phoneController,
-                                  hint: 'Phone Number',
-                                  icon: Icons.phone,
-                                  keyboardType: TextInputType.number,
-                                  maxLength: 10,
-                                  inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-                                  customValidator: (value) {
-                                    if (value == null || value.isEmpty) return 'Please enter your phone number';
-                                    if (value.length != 10) return 'Phone number must be exactly 10 digits';
-                                    return null;
-                                  }),
+                                controller: _phoneController,
+                                hint: 'Phone Number',
+                                icon: Icons.phone,
+                                keyboardType: TextInputType.number,
+                                maxLength: 10,
+                                inputFormatters: [
+                                  FilteringTextInputFormatter.digitsOnly,
+                                ],
+                                customValidator: (value) {
+                                  if (value == null || value.isEmpty)
+                                    return 'Please enter your phone number';
+                                  if (value.length != 10)
+                                    return 'Phone number must be exactly 10 digits';
+                                  return null;
+                                },
+                              ),
                               Padding(
                                 padding: const EdgeInsets.only(bottom: 20),
                                 child: DropdownButtonFormField<String>(
                                   initialValue: _selectedProfession,
-                                  icon: const Icon(Icons.keyboard_arrow_down, color: Color(0xFF0B1E3F)),
+                                  icon: const Icon(
+                                    Icons.keyboard_arrow_down,
+                                    color: Color(0xFF0B1E3F),
+                                  ),
                                   dropdownColor: const Color(0xFFC0C0C2),
-                                  style: const TextStyle(color: Color(0xFF0B1E3F), fontSize: 16),
+                                  style: const TextStyle(
+                                    color: Color(0xFF0B1E3F),
+                                    fontSize: 16,
+                                  ),
                                   decoration: InputDecoration(
                                     filled: true,
                                     fillColor: const Color(0xFFC0C0C2),
                                     hintText: 'Select Profession',
-                                    hintStyle: TextStyle(color: Colors.grey[600]),
-                                    prefixIcon: const Icon(Icons.handyman, color: Color(0xFF0B1E3F)),
+                                    hintStyle: TextStyle(
+                                      color: Colors.grey[600],
+                                    ),
+                                    prefixIcon: const Icon(
+                                      Icons.handyman,
+                                      color: Color(0xFF0B1E3F),
+                                    ),
                                     border: OutlineInputBorder(
-                                        borderRadius: BorderRadius.circular(15),
-                                        borderSide: BorderSide.none),
+                                      borderRadius: BorderRadius.circular(15),
+                                      borderSide: BorderSide.none,
+                                    ),
                                   ),
                                   items: _professions
-                                      .map((String prof) => DropdownMenuItem<String>(
-                                          value: prof, child: Text(prof)))
+                                      .map(
+                                        (String prof) =>
+                                            DropdownMenuItem<String>(
+                                              value: prof,
+                                              child: Text(prof),
+                                            ),
+                                      )
                                       .toList(),
                                   onChanged: (String? newValue) {
-                                    setState(() => _selectedProfession = newValue);
+                                    setState(
+                                      () => _selectedProfession = newValue,
+                                    );
                                   },
-                                  validator: (value) =>
-                                      value == null ? 'Please select a profession' : null,
+                                  validator: (value) => value == null
+                                      ? 'Please select a profession'
+                                      : null,
                                 ),
                               ),
                               _buildTextField(
-                                  controller: _experienceController,
-                                  hint: 'Years of Experience',
-                                  icon: Icons.timeline,
-                                  keyboardType: TextInputType.number,
-                                  inputFormatters: [FilteringTextInputFormatter.digitsOnly]),
-                              _buildFileUploadBox('Upload NIC (Front & Back PDF)', Icons.badge),
-                              _buildFileUploadBox('Upload Work/Education Certificates', Icons.school),
+                                controller: _experienceController,
+                                hint: 'Years of Experience',
+                                icon: Icons.timeline,
+                                keyboardType: TextInputType.number,
+                                inputFormatters: [
+                                  FilteringTextInputFormatter.digitsOnly,
+                                ],
+                              ),
+                              _buildFileUploadBox(
+                                'Upload NIC (Front & Back PDF)',
+                                Icons.badge,
+                              ),
+                              _buildFileUploadBox(
+                                'Upload Work/Education Certificates',
+                                Icons.school,
+                              ),
                               const SizedBox(height: 10),
                             ],
                           )
@@ -371,12 +480,16 @@ class _SignupScreenState extends State<SignupScreen> {
                   ),
                   const SizedBox(height: 20),
                   _isLoading
-                      ? const CircularProgressIndicator(color: Color(0xFFB18E44))
+                      ? const CircularProgressIndicator(
+                          color: Color(0xFFB18E44),
+                        )
                       : ElevatedButton(
                           style: ElevatedButton.styleFrom(
                             backgroundColor: const Color(0xFFB18E44),
                             minimumSize: const Size(double.infinity, 55),
-                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(25)),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(25),
+                            ),
                           ),
                           onPressed: () async {
                             if (_formKey.currentState!.validate()) {
@@ -390,7 +503,8 @@ class _SignupScreenState extends State<SignupScreen> {
                                 List<String> rolesToRegister = [];
                                 if (_selectedRole == 'Register as Customer') {
                                   rolesToRegister.add('CUSTOMER');
-                                } else if (_selectedRole == 'Register as Provider') {
+                                } else if (_selectedRole ==
+                                    'Register as Provider') {
                                   rolesToRegister.add('PROVIDER');
                                 } else {
                                   rolesToRegister.add('CUSTOMER');
@@ -404,33 +518,55 @@ class _SignupScreenState extends State<SignupScreen> {
                                     password: password,
                                     role: role,
                                     // UPDATED: Pass the files to the API service
-                                    idProofName: role == 'PROVIDER' ? _idProofFileName : null,
-                                    certificationName: role == 'PROVIDER' ? _certificationFileName : null,
+                                    idProofName: role == 'PROVIDER'
+                                        ? _idProofFileName
+                                        : null,
+                                    certificationName: role == 'PROVIDER'
+                                        ? _certificationFileName
+                                        : null,
                                   );
                                 }
 
                                 if (!mounted) return;
                                 setState(() => _isLoading = false);
 
-                                _showPendingApprovalDialog();
-
+                                // UPDATED: Check role before showing the pending dialog
+                                if (_selectedRole == 'Register as Customer') {
+                                  // Show a quick success message
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    const SnackBar(
+                                      content: Text(
+                                        'Registration successful! Please login.',
+                                      ),
+                                      backgroundColor: Colors.green,
+                                    ),
+                                  );
+                                  // Send the customer straight back to the login screen
+                                  Navigator.of(context).pop();
+                                } else {
+                                  // Show the pending dialog for Providers (or Customer & Provider)
+                                  _showPendingApprovalDialog();
+                                }
                               } catch (e) {
                                 if (!mounted) return;
                                 setState(() => _isLoading = false);
                                 ScaffoldMessenger.of(context).showSnackBar(
                                   SnackBar(
-                                    content: Text('Registration failed: $e'), 
-                                    backgroundColor: Colors.redAccent
+                                    content: Text('Registration failed: $e'),
+                                    backgroundColor: Colors.redAccent,
                                   ),
                                 );
                               }
                             }
                           },
-                          child: const Text('Register',
-                              style: TextStyle(
-                                  fontSize: 18,
-                                  color: Color(0xFF0B1E3F),
-                                  fontWeight: FontWeight.bold)),
+                          child: const Text(
+                            'Register',
+                            style: TextStyle(
+                              fontSize: 18,
+                              color: Color(0xFF0B1E3F),
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
                         ),
                   const SizedBox(height: 20),
                 ],
