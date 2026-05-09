@@ -278,12 +278,19 @@ class _SignupScreenState extends State<SignupScreen> {
                     hint: 'Full Name',
                     icon: Icons.person,
                     customValidator: (value) {
+<<<<<<< HEAD
                       if (value == null || value.trim().isEmpty) {
                         return 'Please enter your name';
                       }
                       if (value.trim().length < 3) {
                         return 'Name must be at least 3 characters long';
                       }
+=======
+                      if (value == null || value.trim().isEmpty)
+                        return 'Please enter your name';
+                      if (value.trim().length < 3)
+                        return 'Name must be at least 3 characters long';
+>>>>>>> e7843c98728b368607a6344d07c17ecf954a1b5d
                       return null;
                     },
                   ),
@@ -293,9 +300,14 @@ class _SignupScreenState extends State<SignupScreen> {
                     icon: Icons.email,
                     keyboardType: TextInputType.emailAddress,
                     customValidator: (value) {
+<<<<<<< HEAD
                       if (value == null || value.isEmpty) {
                         return 'Please enter your email';
                       }
+=======
+                      if (value == null || value.isEmpty)
+                        return 'Please enter your email';
+>>>>>>> e7843c98728b368607a6344d07c17ecf954a1b5d
                       if (!RegExp(
                         r'^[\w\-.]+@([\w\-]+\.)+[\w\-]{2,}$',
                       ).hasMatch(value)) {
@@ -310,6 +322,7 @@ class _SignupScreenState extends State<SignupScreen> {
                     icon: Icons.lock,
                     isPassword: true,
                     customValidator: (value) {
+<<<<<<< HEAD
                       if (value == null || value.isEmpty) {
                         return 'Please enter a password';
                       }
@@ -319,6 +332,14 @@ class _SignupScreenState extends State<SignupScreen> {
                       if (value.length > 16) {
                         return 'Must be 16 characters or less';
                       }
+=======
+                      if (value == null || value.isEmpty)
+                        return 'Please enter a password';
+                      if (value.length < 8)
+                        return 'Must be at least 8 characters';
+                      if (value.length > 16)
+                        return 'Must be 16 characters or less';
+>>>>>>> e7843c98728b368607a6344d07c17ecf954a1b5d
                       if (!RegExp(r'[!@#\$&*~%^()\-+=_]').hasMatch(value)) {
                         return 'Must contain at least 1 special character';
                       }
@@ -331,12 +352,19 @@ class _SignupScreenState extends State<SignupScreen> {
                     icon: Icons.lock_outline,
                     isPassword: true,
                     customValidator: (value) {
+<<<<<<< HEAD
                       if (value == null || value.isEmpty) {
                         return 'Please confirm your password';
                       }
                       if (value != _passwordController.text) {
                         return 'Passwords do not match!';
                       }
+=======
+                      if (value == null || value.isEmpty)
+                        return 'Please confirm your password';
+                      if (value != _passwordController.text)
+                        return 'Passwords do not match!';
+>>>>>>> e7843c98728b368607a6344d07c17ecf954a1b5d
                       return null;
                     },
                   ),
@@ -409,12 +437,19 @@ class _SignupScreenState extends State<SignupScreen> {
                                   FilteringTextInputFormatter.digitsOnly,
                                 ],
                                 customValidator: (value) {
+<<<<<<< HEAD
                                   if (value == null || value.isEmpty) {
                                     return 'Please enter your phone number';
                                   }
                                   if (value.length != 10) {
                                     return 'Phone number must be exactly 10 digits';
                                   }
+=======
+                                  if (value == null || value.isEmpty)
+                                    return 'Please enter your phone number';
+                                  if (value.length != 10)
+                                    return 'Phone number must be exactly 10 digits';
+>>>>>>> e7843c98728b368607a6344d07c17ecf954a1b5d
                                   return null;
                                 },
                               ),
