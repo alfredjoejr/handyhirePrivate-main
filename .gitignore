@@ -1,1 +1,5 @@
 /.vscode
+/target/
+backend/target/
+# Security: Ignore environment variables
+.env

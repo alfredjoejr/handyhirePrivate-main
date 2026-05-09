@@ -8,6 +8,7 @@ import 'job_finished_screen.dart';
 import 'job_tracking_screen.dart';
 import 'past_jobs_screen.dart';
 import 'customer_profile_screen.dart';
+import '../../services/session_service.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -139,12 +140,20 @@ class _HomeScreenState extends State<HomeScreen> {
             const SizedBox(
               width: 20,
               height: 20,
-              child: CircularProgressIndicator(strokeWidth: 2, color: Colors.black54),
+              child: CircularProgressIndicator(
+                strokeWidth: 2,
+                color: Colors.black54,
+              ),
             ),
             const SizedBox(width: 15),
             Expanded(
-              child: Text(JobStatusProvider.statusMessage,
-                  style: const TextStyle(fontWeight: FontWeight.bold, color: Colors.black)),
+              child: Text(
+                JobStatusProvider.statusMessage,
+                style: const TextStyle(
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black,
+                ),
+              ),
             ),
             const Icon(Icons.arrow_forward_ios, size: 16, color: Colors.black),
           ],
@@ -181,20 +190,27 @@ class _HomeScreenState extends State<HomeScreen> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                    builder: (_) => CategoryDetailsScreen(category: categories[index])),
+                  builder: (_) =>
+                      CategoryDetailsScreen(category: categories[index]),
+                ),
               ).then((_) => _handleReturn());
             },
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Icon(categories[index]["icon"], color: AppColors.accent, size: 32),
+                Icon(
+                  categories[index]["icon"],
+                  color: AppColors.accent,
+                  size: 32,
+                ),
                 const SizedBox(height: 10),
                 Text(
                   categories[index]["name"],
                   style: const TextStyle(
-                      color: AppColors.text,
-                      fontSize: 12,
-                      fontWeight: FontWeight.w600),
+                    color: AppColors.text,
+                    fontSize: 12,
+                    fontWeight: FontWeight.w600,
+                  ),
                 ),
               ],
             ),
@@ -210,13 +226,23 @@ class _HomeScreenState extends State<HomeScreen> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text("Hello, Alex!",
-              style: TextStyle(
-                  color: AppColors.text, fontSize: 32, fontWeight: FontWeight.bold)),
+          // UPDATED: Removed 'const' from Text, added dynamic session name
+          Text(
+            "Hello, ${SessionService.instance.displayName ?? 'Customer'}!",
+            style: const TextStyle(
+              // Note: 'const' is moved here to the style!
+              color: AppColors.text,
+              fontSize: 32,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
           const SizedBox(height: 8),
-          const Text("What can I do for you today?",
-              style: TextStyle(color: AppColors.text, fontSize: 16)),
+          const Text(
+            "What can I do for you today?",
+            style: TextStyle(color: AppColors.text, fontSize: 16),
+          ),
           const SizedBox(height: 30),
+          // Your grid is back!
           Expanded(child: _buildCategoryGrid()),
         ],
       ),
@@ -235,8 +261,13 @@ class _HomeScreenState extends State<HomeScreen> {
               backgroundColor: AppColors.secondary,
               elevation: 0,
               automaticallyImplyLeading: false,
-              title: Text(_titles[_selectedIndex],
-                  style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
+              title: Text(
+                _titles[_selectedIndex],
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
             ),
       body: SafeArea(
         child: Column(
@@ -246,8 +277,8 @@ class _HomeScreenState extends State<HomeScreen> {
               child: _selectedIndex == 0
                   ? _buildHomeTab()
                   : _selectedIndex == 1
-                      ? const PastJobsScreen()
-                      : const CustomerProfileScreen(),
+                  ? const PastJobsScreen()
+                  : const CustomerProfileScreen(),
             ),
           ],
         ),
@@ -261,7 +292,10 @@ class _HomeScreenState extends State<HomeScreen> {
         onTap: (index) => setState(() => _selectedIndex = index),
         items: const [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
-          BottomNavigationBarItem(icon: Icon(Icons.work_history), label: "My Jobs"),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.work_history),
+            label: "My Jobs",
+          ),
           BottomNavigationBarItem(icon: Icon(Icons.person), label: "Profile"),
         ],
       ),
